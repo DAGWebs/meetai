@@ -231,7 +231,7 @@ export const SignUpView = () => {
             </form>
           </Form>
 
-          <div className="bg-radial from-green-300 to-green-800 relative hdiden flex flex-col gap-y-4 items-center justify-center">
+          <div className="bg-radial from-sidebar-accent to-sidebar relative hdiden flex flex-col gap-y-4 items-center justify-center">
             <Image
               src="/logo.svg"
               width={92}
