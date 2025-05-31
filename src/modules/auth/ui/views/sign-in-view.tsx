@@ -23,6 +23,7 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const formSchema = z.object({
   email: z
@@ -126,7 +127,7 @@ export const SignInView = () => {
                 <Button type="submit" className="w-full" disabled={pending}>
                   Sign In
                 </Button>
-                <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top1/2 after:z-0 after:flex after:items-center after:border-t">
+                <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                   <span className="bg-card text-muted-foreground relative z-10 px-2">
                     Or Login With
                   </span>
@@ -137,16 +138,28 @@ export const SignInView = () => {
                     type="button"
                     className="w-1/2"
                     disabled={pending}
+                    onClick={() => {
+                      authClient.signIn.social({
+                        provider: "google",
+                        callbackURL: "/",
+                      });
+                    }}
                   >
-                    Google
+                    <FaGoogle className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="outline"
                     type="button"
                     className="w-1/2"
                     disabled={pending}
+                    onClick={() => {
+                      authClient.signIn.social({
+                        provider: "github",
+                        callbackURL: "/",
+                      });
+                    }}
                   >
-                    Github
+                    <FaGithub className="h-4 w-4" />
                   </Button>
                 </div>
                 <div className="text-center text-sm">

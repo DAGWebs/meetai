@@ -23,6 +23,7 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const formSchema = z
   .object({
@@ -186,15 +187,35 @@ export const SignUpView = () => {
                     className="w-1/2"
                     disabled={pending}
                   >
-                    Google
+                    <FaGoogle className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="outline"
                     type="button"
                     className="w-1/2"
                     disabled={pending}
+                    onClick={() => {
+                      authClient.signIn.social({
+                        provider: "google",
+                        callbackURL: "/",
+                      });
+                    }}
                   >
-                    Github
+                    <FaGoogle className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    type="button"
+                    className="w-1/2"
+                    disabled={pending}
+                    onClick={() => {
+                      authClient.signIn.social({
+                        provider: "github",
+                        callbackURL: "/",
+                      });
+                    }}
+                  >
+                    <FaGithub className="h-4 w-4" />
                   </Button>
                 </div>
                 <div className="text-center text-sm">
