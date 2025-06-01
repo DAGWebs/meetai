@@ -1,10 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { CirclePlus, XCircleIcon } from "lucide-react";
-import { NewAgentDialog } from "./new-agent-dialog";
+import { NewAgentDialog } from "@/modules/agents/ui/components/new-agent-dialog";
 import { useState } from "react";
 import { AgentsSearchFIlter } from "@/modules/agents/ui/components/agents-search-filter";
-import { useAgentFilters } from "../../hooks/use-agents-filters";
+import { useAgentFilters } from "@/modules/agents/hooks/use-agents-filters";
 import { DEFAULT_PAGE } from "@/constants";
 
 export const AgentsListHeader = () => {
