@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from "sonner";
+import { NuqsAdapter } from "nuqs/adapters/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,17 +21,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <TRPCReactProvider><Toaster />{children}</TRPCReactProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <NuqsAdapter>
+      <TRPCReactProvider>
+        <html lang="en">
+          <body className={`${inter.className} antialiased`}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <TRPCReactProvider>
+                <Toaster />
+                {children}
+              </TRPCReactProvider>
+            </ThemeProvider>
+          </body>
+        </html>
+      </TRPCReactProvider>
+    </NuqsAdapter>
   );
 }
