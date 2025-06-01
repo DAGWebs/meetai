@@ -6,7 +6,7 @@ import { DataTable } from "@/components/data-table";
 import { columns } from "@/modules/agents/ui/components/columns";
 import { EmptyState } from "@/components/empty-state";
 import { useAgentFilters } from "@/modules/agents/hooks/use-agents-filters";
-import { DataPagination } from "@/modules/agents/ui/components/data-pagination";
+import { DataPagination } from "@/components/data-pagination";
 import { useRouter } from "next/navigation";
 // import { ResponsiveDialog } from "@/components/responsive-dialog";
 // import { Button } from "@/components/ui/button";
