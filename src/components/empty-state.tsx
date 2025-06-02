@@ -13,7 +13,7 @@ interface Props {
 export const EmptyState = ({
   title,
   description,
-  image = "/empty.svg",
+  image = "empty",
 }: Props) => {
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
