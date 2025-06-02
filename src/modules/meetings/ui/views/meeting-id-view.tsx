@@ -11,6 +11,10 @@ import { useRouter } from "next/navigation";
 import { useConfirm } from "@/hooks/use-confirm";
 import { UpdateMeetingDialog } from "@/modules/meetings/ui/components/update-meeting-dialog";
 import { useState } from "react";
+import { UpcomingState } from "@/modules/meetings/ui/components/upcoming-state";
+import { ActiveState } from "@/modules/meetings/ui/components/active-state";
+import { CanceledState } from "@/modules/meetings/ui/components/canceled-state";
+import { ProcessingState } from "../components/processing-state";
 
 interface Props {
   meetingId: string;
@@ -47,6 +51,12 @@ export const MeetingIdView = ({ meetingId }: Props) => {
     removeMeeting.mutateAsync({ id: meetingId });
   };
 
+  const isActive = data.status === "active";
+  const isUpcoming = data.status === "upcoming";
+  const isCancelled = data.status === "cancelled";
+  const isCompleted = data.status === "completed";
+  const isProcessing = data.status === "processing";
+
   return (
     <>
       <RemoveConfirmation />
@@ -62,7 +72,17 @@ export const MeetingIdView = ({ meetingId }: Props) => {
           onEdit={() => setUpdateMeetingDialogOpen(true)}
           onRemove={handleRemoveMeeting}
         />
-        <pre className="max-w-[80vw]">{JSON.stringify(data, null, 2)}</pre>
+        {isCancelled && <CanceledState />}
+        {isCompleted && <div>Completed</div>}
+        {isProcessing && <ProcessingState />}
+        {isUpcoming && (
+          <UpcomingState
+            meetingId={meetingId}
+            onCancelMeeting={() => {}}
+            isCanceling={false}
+          />
+        )}
+        {isActive && <ActiveState meetingId={meetingId} />}
       </div>
     </>
   );
