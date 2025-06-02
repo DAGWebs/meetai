@@ -7,9 +7,14 @@ import { useEffect, useState } from "react";
 interface Props {
   title: string;
   description: string;
+  image?: string;
 }
 
-export const EmptyState = ({ title, description }: Props) => {
+export const EmptyState = ({
+  title,
+  description,
+  image = "/empty.svg",
+}: Props) => {
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -26,7 +31,8 @@ export const EmptyState = ({ title, description }: Props) => {
   // Decide which theme is actually active
   const activeTheme = theme === "system" ? systemTheme : theme;
   // Choose the SVG based on the active theme
-  const imageSrc = activeTheme === "dark" ? "/empty-dark.svg" : "/empty.svg";
+  const imageSrc =
+    activeTheme === "dark" ? `/${image}-dark.svg` : `/${image}.svg`;
 
   return (
     <div className="flex flex-col items-center justify-center">
